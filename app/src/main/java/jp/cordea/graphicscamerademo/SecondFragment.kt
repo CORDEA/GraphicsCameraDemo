@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import kotlinx.android.synthetic.main.fragment_second.*
 
 class SecondFragment : Fragment() {
 
@@ -21,9 +22,17 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            startAnimation()
         }
+    }
+
+    private fun startAnimation() {
+        image_view.startAnimation(
+            RotationAnimation(0f, 180f, image_view.width / 2f, image_view.height / 2f)
+                .apply {
+                    duration = 1000L
+                }
+        )
     }
 }
